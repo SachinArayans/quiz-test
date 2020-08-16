@@ -1,0 +1,38 @@
+"ttile":"This is title of text",
+"id":"1234",
+"duration":8,
+"sdate":"6",
+"stime":"10",
+questions:["question1":{ "qtitle":"What is this and that?", "Options":["option1","Optins2","Option3"], "right":"option1" }, 
+"question2":{ "qtitle":"What is this and that?", "Options":["option1","Optins2","Option3"], "right":"option1" }, 
+"question3":{ "qtitle":"What is this and that?", "Options":["option1","Optins2","Option3"], "right":"option1" }]
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+$jsonobj = '{"Peter":{"Option1":true,"Option 2":false,"Option 3":false},"Ben":[37,45,32],"Joe":43}';
+$job='{"t":"This is title","q":[{"question":{ "question":"What is this and that?", "Options":["option1","Optins2","Option3"], "right":"option1" }}, {"question":{ "question":"What is this and that?", "Options":["option1","Optins2","Option3"], "right":"option1" }}, {"question":{ "question":"What is this and that?", "Options":["option1","Optins2","Option3"], "right":"option1" }}]}';
+ 
+var_dump(json_decode($jsonobj));
+echo "<hr>";
+$obj=json_decode($job);
+echo $obj->t." | Title<hr>";
+$nm=1;
+echo $obj->q[$nm]->question->question;
+echo "<br>";
+$nm=1;
+echo implode($obj->q[$nm]->question->Options);
+echo"<br> Right option is:";
+echo $obj->q[$nm]->question->right;
+?>
+
+</body>
+</html>

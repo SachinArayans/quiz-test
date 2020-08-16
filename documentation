@@ -1,0 +1,49 @@
+What
+This software allow users to Conduct and Schedule Tests.
+This software only allow Optional Question Answers.
+How
+1. Sign Up/Log In
+2. Click on Schedule Test
+3. Enter
+	Title: of Test (eg. General Knowledge Test for Students)
+	Start Date: is the date and time when your test starts and allow your audinece to give answers.
+	Duration: is Time duration in Minute after this Minute your test will expire.
+	Question: Your Questions
+	Options: There are four options for each question
+	Right Option: Admin Need to tick the (radio button) which one is right options
+	Add Question: button will allow you to add more questions in yout tests (Note: you can only add upto 50 questions)
+	Cancel: button will cancel your Schedulation and transfer you on home page
+How to take test:
+	If you come through the test link you need to enter you name and just GO :)
+	If you come dont come through test link you need to provide test id and name and then GO :)
+
+Documentation:	Schedule: button will Schedule your test and provie test id and link to share with your audinece
+
+Database Design:
+
+Programin Language Used:
+Structure of Software:
+
+Errors While Testinn:
+1: I have forgotten to give dynamic url for opening json file in 2 files> main.php & check.php
+2: I have made database to store question as varchar(100) but question may be longer so i edited and set it to 400;
+3: SQL failed when i passed single quote(') to sql server. Because in sql VALUES('') single quote terminate. So I need to escape single quote. I solved it with addslashes() function in PHP. This function add slashes before single qutote or double quote.
+4: There is confilict if anyone dobule click on answer; Its really Ironic for me why a function is callin simelteneously
+
+Structure:
+1: index.php //Asks for test id and after that ask for you name and declare a session with your name. than it calls Main.php to show questions
+2: main.php  // (This works like api) 
+	this file take testid as input as get method
+	Check in database for the link of test with this id
+	if exist open a file of test and return data which is in json
+	convert json file into objects and check if test is not expired or scheduled
+		if scheduled or expired this file give response not started yet or test expired respectivly.
+		(main.php give responses in json format so that index.php can prase 
+		if not scheduled or expired than give questions and options as responses
+	every option call an api check.php to check whether options is right or not.
+3: Check.php   // this is file which take input (testid answer and questionNo)
+	This file find link of test with testid and read that file and check for the rightanswer
+		if inputed ans and right options are same this returen true
+		else return false.
+		if answer is right this increse value of session of marks else it doesnt incres marks
+	this function store participants response in database
